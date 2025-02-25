@@ -18,48 +18,52 @@ export const CellBase = styled.div<{
 export type CellProps = Pick<
 	TableColumnBase,
 	'button' | 'grow' | 'maxWidth' | 'minWidth' | 'width' | 'right' | 'center' | 'compact' | 'hide' | 'allowOverflow'
->;
+	>;
+
+type CellPropsTransient = {
+	[K in keyof CellProps as `$${K}`]: CellProps[K]
+}
 
 // Flex calculations
-export const CellExtended = styled(CellBase)<CellProps>`
-	flex-grow: ${({ button, grow }) => (grow === 0 || button ? 0 : grow || 1)};
+export const CellExtended = styled(CellBase)<CellPropsTransient>`
+	flex-grow: ${({ $button, $grow }) => ($grow === 0 || $button ? 0 : $grow || 1)};
 	flex-shrink: 0;
 	flex-basis: 0;
-	max-width: ${({ maxWidth }) => maxWidth || '100%'};
-	min-width: ${({ minWidth }) => minWidth || '100px'};
-	${({ width }) =>
-		width &&
+	max-width: ${({ $maxWidth }) => $maxWidth || '100%'};
+	min-width: ${({ $minWidth }) => $minWidth || '100px'};
+	${({ $width }) =>
+		$width &&
 		css`
-			min-width: ${width};
-			max-width: ${width};
+			min-width: ${$width};
+			max-width: ${$width};
 		`};
-	${({ right }) => right && 'justify-content: flex-end'};
-	${({ button, center }) => (center || button) && 'justify-content: center'};
-	${({ compact, button }) => (compact || button) && 'padding: 0'};
+	${({ $right }) => $right && 'justify-content: flex-end'};
+	${({ $button, $center }) => ($center || $button) && 'justify-content: center'};
+	${({ $compact, $button }) => ($compact || $button) && 'padding: 0'};
 
 	/* handle hiding cells */
-	${({ hide }) =>
-		hide &&
-		hide === 'sm' &&
+	${({ $hide }) =>
+		$hide &&
+		$hide === 'sm' &&
 		media.sm`
     display: none;
   `};
-	${({ hide }) =>
-		hide &&
-		hide === 'md' &&
+	${({ $hide }) =>
+		$hide &&
+		$hide === 'md' &&
 		media.md`
     display: none;
   `};
-	${({ hide }) =>
-		hide &&
-		hide === 'lg' &&
+	${({ $hide }) =>
+		$hide &&
+		$hide === 'lg' &&
 		media.lg`
     display: none;
   `};
-	${({ hide }) =>
-		hide &&
-		Number.isInteger(hide) &&
-		media.custom(hide as number)`
+	${({ $hide }) =>
+		$hide &&
+		Number.isInteger($hide) &&
+		media.custom($hide as number)`
     display: none;
   `};
 `;
