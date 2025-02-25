@@ -187,16 +187,16 @@ function TableCol<T>({
 			data-column-id={column.id}
 			className="rdt_TableCol"
 			$headCell
-			allowOverflow={column.allowOverflow}
-			button={column.button}
-			compact={column.compact}
-			grow={column.grow}
-			hide={column.hide}
-			maxWidth={column.maxWidth}
-			minWidth={column.minWidth}
-			right={column.right}
-			center={column.center}
-			width={column.width}
+			$allowOverflow={column.allowOverflow}
+			$button={column.button}
+			$compact={column.compact}
+			$grow={column.grow}
+			$hide={column.hide}
+			$maxWidth={column.maxWidth}
+			$minWidth={column.minWidth}
+			$right={column.right}
+			$center={column.center}
+			$width={column.width}
 			draggable={column.reorder}
 			$isDragging={equalizeId(column.id, draggingColumnId)}
 			onDragStart={onDragStart}

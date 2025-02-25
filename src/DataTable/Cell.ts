@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import { media } from './media';
-import { TableColumnBase } from './types';
+import { AsTransientStyleProps, TableColumnBase } from './types';
 
 export const CellBase = styled.div<{
 	$headCell?: boolean;
@@ -18,14 +18,10 @@ export const CellBase = styled.div<{
 export type CellProps = Pick<
 	TableColumnBase,
 	'button' | 'grow' | 'maxWidth' | 'minWidth' | 'width' | 'right' | 'center' | 'compact' | 'hide' | 'allowOverflow'
-	>;
-
-type CellPropsTransient = {
-	[K in keyof CellProps as `$${K}`]: CellProps[K]
-}
+>;
 
 // Flex calculations
-export const CellExtended = styled(CellBase)<CellPropsTransient>`
+export const CellExtended = styled(CellBase)<AsTransientStyleProps<CellProps>>`
 	flex-grow: ${({ $button, $grow }) => ($grow === 0 || $button ? 0 : $grow || 1)};
 	flex-shrink: 0;
 	flex-basis: 0;
