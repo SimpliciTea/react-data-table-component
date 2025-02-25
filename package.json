@@ -106,7 +106,8 @@
     "typescript": "^5.7.3"
   },
   "dependencies": {
-    "deepmerge": "^4.3.1"
+    "deepmerge": "^4.3.1",
+    "react-data-table-component": "https://github.com/SimpliciTea/react-data-table-component.git#master"
   },
   "peerDependencies": {
     "react": ">= 17.0.0",
