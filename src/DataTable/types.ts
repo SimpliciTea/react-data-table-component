@@ -117,6 +117,10 @@ export type TableProps<T> = {
 	title?: string | React.ReactNode;
 };
 
+export type AsTransientStyleProps<T extends Record<string, unknown>> = {
+	[K in string & keyof T as `$${K}`]: T[K];
+};
+
 export type TableColumnBase = {
 	allowOverflow?: boolean;
 	button?: boolean;
